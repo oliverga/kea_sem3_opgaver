@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="main.js"></script>
+</head>
+<body>
+    <button onclick="generateBreadcrumbs()">Generate Breadcrumbs</button>
+    <nav>
+        <ul class="breadcrumbs">
+
+        </ul>
+    </nav>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: sans-serif;
+    }
+    
+    .breadcrumbs {
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+
+    .breadcrumbs li {
+        margin-right: 10px;
+    }
+
+    .breadcrumbs li::after {
+        content: '/';
+        margin-left: 10px;
+    }
+
+    .breadcrumbs li:last-child {
+        margin-right: 0;
+    }
+
+    .breadcrumbs li:last-child::after {
+        content: '';
+        margin-left: 0;
+    }
+
+    .breadcrumbs li a {
+        text-decoration: none;
+    }
+
+    .breadcrumbs li a:hover {
+        text-decoration: underline;
+    }
+</style>

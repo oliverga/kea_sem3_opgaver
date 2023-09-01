@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css">
+    <script type="module" src="script.js"></script> -->
+</head>
+
+<body>
+
+    <div class="button_container">
+        <button id="filterDrevne">Alle drevne</button>
+        <button id="filterMereEndTo">Mere end 2 sæder</button>
+        <button id="filterEjetAfJonas">Ejet af Jonas</button>
+        <button id="filterRugbroed">Rugbrøds-drevne og plads til mere end 1</button>
+        <button id="showAll">Show All</button>
+        <button id="partyTime" onclick="togglePartyTime()">Party Time</button>
+    </div>
+
+    <ul>
+        <li><strong>Type</strong></li>
+        <li><strong>Fuel</strong></li>
+        <li><strong>Passengers</strong></li>
+        <li><strong>Stops</strong></li>
+        <li><strong>OwnedBy</strong></li>
+        <li><strong>Electric</strong></li>
+        <li><strong>Tandem</strong></li>
+    </ul>
+
+
+
+
+
+<script>
+    const vehicles = [
+    { type: "Bus", fuel: "Diesel", passengers: 45, stops: ["Nørrebrogade", "Elmegade"] },
+    { type: "Bil", fuel: "Benzin", passengers: 4, ownedBy: "Klaus" },
+    { type: "Cykel", fuel: "Rugbrød", passengers: 0, ownedBy: "Jonas", isElectric: true },
+    { type: "Bil", passengers: 5, ownedBy: "Elon", isElectric: true },
+    { type: "MC", fuel: "Benzin", passengers: 2, ownedBy: "Fonda" },
+    { type: "Cykel", fuel: "Rugbrød", passengers: 2, ownedBy: "Vingegård", isTandem: true },
+    { type: "MC", fuel: "Benzin", passengers: 2, ownedBy: "Yolanda" },
+    { type: "Knallert", fuel: "Benzin", passengers: 1, ownedBy: "Børge" },
+    { type: "Knallert", fuel: "Benzin", passengers: 1, ownedBy: "Jonas" },
+    { type: "Løbehjul", passengers: 1, isElectric: true },
+    ];
+
+    const ulPointer = document.querySelector("ul");
+    showTheseVehicles(vehicles);
+
+    
+    function showTheseVehicles(arr) {
+        ulPointer.innerHTML = `<li><strong>Type</strong></li>
+        <li><strong>Fuel</strong></li>
+        <li><strong>Passengers</strong></li>
+        <li><strong>Stops</strong></li>
+        <li><strong>OwnedBy</strong></li>
+        <li><strong>Electric</strong></li>
+        <li><strong>Tandem</strong></li>`;
+
+        arr.forEach((each) => {
+            ulPointer.innerHTML += `<li>${each.type}</li>`;
+            ulPointer.innerHTML += `<li>${each.fuel ? each.fuel : ""}</li>`;
+            ulPointer.innerHTML += `<li>${each.passengers ? each.passengers : ""}</li>`;
+            ulPointer.innerHTML += `<li>${each.stops ? each.stops : ""}</li>`;
+            ulPointer.innerHTML += `<li>${each.ownedBy ? each.ownedBy : ""}</li>`;
+            ulPointer.innerHTML += `<li>${each.isElectric ? each.isElectric : ""}</li>`;
+            ulPointer.innerHTML += `<li>${each.isTandem ? each.isTandem : ""}</li>`;
+        });
+    }
+
+
+    // Hardcoded filters
+    function filterDrevneKoeretoejer(arr) {
+    let result = arr.filter((each) => {
+        return each.fuel;
+    });
+    return result;
+    }
+
+    function filterMereEnd2Sæder(arr) {
+    let result = arr.filter((each) => {
+        return each.passengers > 2;
+    });
+    return result;
+    }
+
+    function filterElDrevneKoeretoejerEjetAfJonas(arr) {
+    let result = arr.filter((each) => {
+        return each.isElectric && each.ownedBy === "Jonas";
+    });
+    return result;
+    }
+
+    function filterRugbroedsDrevneKoeretoejerMedMereEnd1Sæde(arr) {
+    let result = arr.filter((each) => {
+        return each.fuel === "Rugbrød" && each.passengers > 1;
+    });
+    return result;
+    }
+
+    // Event listeners
+    document.querySelector('#filterDrevne').addEventListener('click', function() {
+        showTheseVehicles(filterDrevneKoeretoejer(vehicles));
+    });
+
+    document.querySelector('#filterMereEndTo').addEventListener('click', function() {
+        showTheseVehicles(filterMereEnd2Sæder(vehicles));
+    });
+
+    document.querySelector('#filterEjetAfJonas').addEventListener('click', function() {
+        showTheseVehicles(filterElDrevneKoeretoejerEjetAfJonas(vehicles));
+    });
+
+    document.querySelector('#filterRugbroed').addEventListener('click', function() {
+        showTheseVehicles(filterRugbroedsDrevneKoeretoejerMedMereEnd1Sæde(vehicles));
+    });
+
+    document.querySelector('#showAll').addEventListener('click', function() {
+        showTheseVehicles(vehicles);
+    });
+
+    document.querySelector('#partyTime').addEventListener('click', function() {
+        partyTime();
+    });
+
+    function partyTime() {
+
+        const liPointers = document.querySelectorAll("li");
+        liPointers.forEach((each) => {
+            each.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+        });
+
+    }
+    function togglePartyTime() {
+        setInterval(() => {
+            partyTime();
+        }, 60);
+    }
+
+
+</script>
+</body>
+
+</html>
+
+<style>
+
+* {
+    font-size: 1rem;
+}
+
+ul {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px; 
+    background-color: #3f3f3f; 
+    width: 80%;
+    padding: 0;
+    margin: 2rem auto;
+}
+
+li {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    list-style-type: none;
+    padding: 0.5rem;
+    background-color: white; 
+    transition: all 0.06s ease-in-out;
+}
+
+li:hover {
+    background-color: rgb(255, 0, 0);
+    color: white;
+}
+
+.button_container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto;
+    gap: 1rem;
+}
+
+button {
+    padding: 0.5rem;
+    background-color: #ffffff;
+    border: 1px solid #3f3f3f;
+    cursor: pointer;
+    transition: all 0.06s ease-in-out;
+}
+
+button:hover {
+    background-color: rgb(0, 0, 255);
+    color: white;
+}
+</style>

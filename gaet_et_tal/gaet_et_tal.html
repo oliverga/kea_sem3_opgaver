@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>
+            0 ↔ 100
+        </h2>
+        <div class="guess">
+            <div>
+                <input type="number" name="guess" id="guess" onkeydown="handleKeyDown(event)">
+                <button onclick="checkGuess()">Gæt</button>
+            </div>
+            <p id="counter">Antal gæt: 0</p>
+        </div>
+        <div class="feedback_container">
+            <p id="feedback"></p>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
+
+

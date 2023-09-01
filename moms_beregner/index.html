@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Moms beregner</title>
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <div class="input">
+                    <div>
+                        <label for="beloeb">Beløb</label>
+                        <input type="number" placeholder="DKK" id="beloeb" onkeydown="if(event.keyCode==13) beregn(document.querySelector('#beloeb').value, document.querySelector('#moms').value)">
+                    </div>
+                    <div>
+                        <label for="moms">Moms %</label>
+                        <input type="number" placeholder="%" id="moms" value="25" min="0" max="100" step="1" >
+                    </div>
+                    <button onclick="beregn(document.querySelector('#beloeb').value, document.querySelector('#moms').value)">Beregn</button>
+                </div>
+                <div class="output">
+                    <p class="momsbeløb"></p>
+                    <p class="total"></p>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            "use strict";
+            function beregn(beloeb, moms) {
+
+                // Beregn momsbeløb og total
+                let momsBeloeb = beloeb * (moms / 100);
+                let total = Number(beloeb) + Number(momsBeloeb);
+
+                // Max 2 decimaler
+                momsBeloeb = momsBeloeb.toFixed(2);
+                total = total.toFixed(2);
+
+                // Output til DOM og console
+                document.querySelector(".momsbeløb").textContent = `Momsbeløb: ${momsBeloeb} kr.`;
+                document.querySelector(".total").textContent = `Total: ${total} kr.`;
+                
+                console.log(`Momsbeløb: ${momsBeloeb} kr.`);
+                console.log(`Total: ${total} kr.`);
+            }
+        </script>
+
+    </body>
+</html>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        width: fit-content;
+        border-radius: 10px;
+    }
+
+    .input {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .input div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .input div label {
+        font-size: 0.8rem;
+    }
+
+    .input div input {
+        padding: 0.5rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+    }
+
+    .input button {
+        padding: 0.5rem;
+        border-radius: 5px;
+        border: 1px solid #46d146;
+        width: 100%;
+        background-color: #58ff58;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .input button:hover {
+        background-color: #44e144;
+    }
+
+    .output {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .output p {
+        font-size: 0.8rem;
+    }
+</style>
