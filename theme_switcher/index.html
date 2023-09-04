@@ -16,8 +16,8 @@
             </select>
         </div>
         <script>
-            document.getElementById('theme').addEventListener('change', function() {
-                document.body.setAttribute('data-theme', this.value);
+            document.getElementById('theme').addEventListener('change', function(event) {
+                document.body.setAttribute('data-theme', event.target.value);
             });
         </script>
         
@@ -28,10 +28,7 @@
                 Theme switcher!
             </h1>
             <p>
-                <!-- lorem ipsum paragraph -->
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.
-                Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.
                 Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.
             </p>
         </div>
