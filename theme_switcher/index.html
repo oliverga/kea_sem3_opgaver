@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body data-theme="light">
+    <header>
+        <div>
+            <label for="theme">Choose a theme:</label>
+            <select name="themes" id="theme">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="hawaii">Hawaii</option>
+            </select>
+        </div>
+        <script>
+            document.getElementById('theme').addEventListener('change', function() {
+                document.body.setAttribute('data-theme', this.value);
+            });
+        </script>
+        
+    </header>
+    <main>
+        <div class="container">
+            <h1>
+                Theme switcher!
+            </h1>
+            <p>
+                <!-- lorem ipsum paragraph -->
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.
+                Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.
+                Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.
+            </p>
+        </div>
+
+    </main>
+    <footer>
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </footer>
+</body>
+</html>
+
+<style>
+    :root {
+        --bg-color: #fff;
+        --header-color: #000;
+        --text-color: #000;
+    }
+
+    [data-theme="dark"] {
+        --bg-color: #000;
+        --header-color: #000;
+        --text-color: #fff;
+
+    }
+
+    [data-theme="hawaii"] {
+        --bg-color: #119cff;
+        --text-color: #ff17e4;
+        --header-color: #ff17e4;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background-color: var(--header-color);
+        color: #fff;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    main {
+        min-height: 100vh;
+    }
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-top: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-top: 1rem;
+    }
+
+    footer {
+        background-color: var(--header-color);
+        color: #fff;
+        padding: 1rem;
+        height: 300px;
+    }
+
+    footer ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    footer ul li {
+        list-style: none;
+        font-size: 1.5rem;
+    }
+</style>

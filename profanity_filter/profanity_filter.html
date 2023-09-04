@@ -8,44 +8,11 @@
 <body>
     <p class="text">Programmering er sjovt! Men husk altid at bruge var, float og marquee i moderne kodning.</p>
     <button id="updateButton">Opdater Text</button>
-    <dialog id="dialog">All de farlige ord er allerede blevet udskiftet ! !!</dialog>
-
-    <script>
-        const curseWords = [
-            {    
-                bad: "var",    
-                good: "const",  
-            },  
-            {    
-                bad: "float",    
-                good: "grid",  
-            },  
-            {    
-                bad: "marquee",    
-                good: "just don't",  
-            },
-        ];
-
-        function profanityFilter(string) {  
-            let newString = string;
-            let isUpdated = true;
-            for (let i = 0; i < curseWords.length; i++) {
-                if (newString.includes(curseWords[i].bad)) {
-                    newString = newString.replace(curseWords[i].bad, `<span class="good-word">${curseWords[i].good}</span>`);
-                    isUpdated = false;
-                }
-            }
-            if (isUpdated) {
-                document.querySelector('#dialog').showModal();
-            }
-            return newString;
-        }
-
-        document.querySelector('#updateButton').addEventListener('click', function() {
-        document.querySelector('.text').innerHTML = profanityFilter(document.querySelector('.text').textContent);
-        });
-        
-    </script>
+    <dialog id="dialog">
+        <p>All de farlige ord er allerede blevet udskiftet ! !!</p>
+        <button id="closeButton">Luk</button>
+    </dialog>
+    <script type="module" src="profanity_filter.js"></script>
 </body>
 </html>
 
