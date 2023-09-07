@@ -1,0 +1,86 @@
+<script>
+    let inQueue = 0;
+
+    setInterval(() => {
+        fetch('https://kea-alt-del.dk/kata-distortion/')
+            .then(response => response.json())
+            .then(data => {
+                inQueue = data.inQueue;
+                console.log(inQueue);
+                document.querySelector('.number').textContent = inQueue;
+            })
+            .catch(error => console.error('Error:', error));
+    }, 1000);
+
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geiger Counter</title>
+</head>
+<body>
+    <div class="container">
+        <div class="geiger-counter">
+            <p class="number"></p>
+            <p class="text"> mSv/h</>
+        </div>
+
+    </div>
+</body>
+</html>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 5rem;
+        text-align: center;
+        background-color: #000000;
+    }
+
+    .geiger-counter {
+        width: 300px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #fff;
+        border-radius: 10px;
+        background-color: #000;
+        color: #0f0;
+        font-family: monospace;
+        filter: drop-shadow(0 0 50px rgba(0, 255, 0, 0.252));
+        animation: flicker 2s infinite;
+    }
+
+    @keyframes flicker {
+        0% { filter: drop-shadow(0 0 50px rgba(0, 255, 0, 0.252)); }
+        25% { filter: drop-shadow(0 0 40px rgba(0, 255, 0, 0.252)); }
+        50% { filter: drop-shadow(0 0 30px rgba(0, 255, 0, 0.252)); }
+        75% { filter: drop-shadow(0 0 40px rgba(0, 255, 0, 0.252)); }
+        100% { filter: drop-shadow(0 0 50px rgba(0, 255, 0, 0.252)); }
+    }
+
+    .number {
+        margin: 0;
+
+    }
+
+    .text {
+        margin-left: 1rem;
+        
+    }
+
+</style>
