@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Button</title>
+</head>
+<body>
+    <div class="container">
+        <button class="next_episode">
+            <p>Next Episode</p>
+            <div class="bg_fill"></div>
+        </button>
+    </div>
+   
+    
+    <script>
+        const button = document.querySelector('.next_episode');
+        const bg_fill = document.querySelector('.bg_fill');
+        const vid = document.querySelector('.vid');
+        bg_fill.addEventListener('animationend', () => {
+            setTimeout(() => {
+                button.classList.add('hide')
+                button.style.scale = 0.5;
+                setTimeout(() => {
+                    window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+                }, 250);
+            }, 250);
+        });
+        button.addEventListener('click', () => {
+            window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+        });
+        
+    </script>
+    
+</body>
+</html>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #141414;
+    }
+
+    .next_episode {
+        background-color: transparent;
+        color: #fff;
+        border: 1px solid #ffffff45;
+        border-radius: 5px;
+        padding: 1rem 1.5rem;
+        font-size: 1.2rem;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        opacity: 1;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .bg_fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: #ffffff45;
+        animation: bg_fill 8s 1 linear forwards;
+    }
+    
+    @keyframes bg_fill {
+        0% {
+            width: 0;
+        }
+        100% {
+            width: 100%;
+        }
+        
+    }
+
+    .hide {
+        opacity: 0;
+    }
+
+</style>
