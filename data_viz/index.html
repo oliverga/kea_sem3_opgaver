@@ -1,5 +1,23 @@
 <script>
     let inQueue = 0;
+    let currentNumber = 0;
+    let intervalId;
+
+    function animateNumber() {
+        if (currentNumber < inQueue) {
+            currentNumber++;
+        } else if (currentNumber > inQueue) {
+            currentNumber--;
+        } else {
+            clearInterval(intervalId);
+            setTimeout(() => {
+                currentNumber = 0;
+                document.querySelector('.number').textContent = currentNumber;
+            }, 8000);
+            return;
+        }
+        document.querySelector('.number').textContent = currentNumber;
+    }
 
     setInterval(() => {
         fetch('https://kea-alt-del.dk/kata-distortion/')
@@ -7,10 +25,10 @@
             .then(data => {
                 inQueue = data.inQueue;
                 console.log(inQueue);
-                document.querySelector('.number').textContent = inQueue;
+                intervalId = setInterval(animateNumber, 100);
             })
             .catch(error => console.error('Error:', error));
-    }, 1000);
+    }, 10000);
 
 </script>
 
@@ -24,7 +42,7 @@
 <body>
     <div class="container">
         <div class="geiger-counter">
-            <p class="number"></p>
+            <p class="number">NaN</p>
             <p class="text"> mSv/h</>
         </div>
 
@@ -51,18 +69,21 @@
     }
 
     .geiger-counter {
-        width: 300px;
-        height: 100px;
+        width: 20rem;
+        height: 8rem;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid #fff;
-        border-radius: 10px;
+        justify-content: space-between;
+        align-items: baseline;
+        border: 1px solid rgba(0, 255, 0, 0.185);
+        border-radius: px;
         background-color: #000;
+        padding-inline: 2rem;
+        padding-block: 1rem;
         color: #0f0;
         font-family: monospace;
         filter: drop-shadow(0 0 50px rgba(0, 255, 0, 0.252));
         animation: flicker 2s infinite;
+        box-shadow: inset 0 0 20px rgba(0, 255, 0, 0.219);
     }
 
     @keyframes flicker {
@@ -75,12 +96,13 @@
 
     .number {
         margin: 0;
-
+        filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.313));
     }
 
     .text {
         margin-left: 1rem;
-        
+        font-size: 2rem;
+        filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.313));
     }
 
 </style>
