@@ -1,0 +1,17 @@
+<script>
+    document.addEventListener('mousemove', function(e) {
+        let xPosition = e.clientX;
+        let yPosition = e.clientY;
+        let lightness = yPosition / window.innerHeight * 100;
+        let hue = xPosition / window.innerWidth * 360;
+
+        document.documentElement.style.setProperty('--lightness', `${lightness}%`);
+        document.documentElement.style.setProperty('--hue', `${hue}`);
+    });
+</script>
+
+<style>
+    body {
+        background-color: hsl(var(--hue, 0), 100%, var(--lightness, 50%));
+    }
+</style>
